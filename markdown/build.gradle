@@ -1,0 +1,79 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+        manifestPlaceholders += ['appAuthRedirectScheme': 'empty']
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion Versions.compose
+    }
+}
+
+dependencies {
+
+    implementation Libs.AndroidX.Lifecycle.livedata
+    implementation Libs.AndroidX.Lifecycle.viewmodel
+
+    implementation Libs.threeTenAbp
+    api Libs.store
+
+    implementation Libs.dataStore
+
+    implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.Fragment.fragment
+    implementation Libs.AndroidX.Navigation.fragment
+    implementation Libs.AndroidX.Navigation.compose
+    implementation Libs.AndroidX.Hilt.navigation
+    implementation Libs.AndroidX.Hilt.compose
+
+    implementation Libs.AndroidX.Paging.runtime
+    implementation Libs.AndroidX.Paging.compose
+
+    implementation Libs.AndroidX.Compose.runtime
+    implementation Libs.AndroidX.Compose.foundation
+    implementation Libs.AndroidX.Compose.ui
+    implementation Libs.AndroidX.Compose.layout
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.animation
+    implementation Libs.AndroidX.Compose.tooling
+    implementation Libs.AndroidX.Compose.livedata
+
+    implementation Libs.Accompanist.coil
+    implementation Libs.Accompanist.insets
+    implementation Libs.Accompanist.flowLayout
+    implementation Libs.Accompanist.pager
+    implementation Libs.Accompanist.systemuicontroller
+
+    implementation Libs.Hilt.library
+    kapt Libs.Hilt.compiler
+
+    kapt Libs.AndroidX.Hilt.compiler
+
+    implementation"br.com.devsrsouza.compose.icons.android:font-awesome:0.1.1"
+    implementation"br.com.devsrsouza.compose.icons.android:tabler-icons:0.1.1"
+    implementation"br.com.devsrsouza.compose.icons.android:feather:0.1.1"
+
+    final def markwon_version = '4.6.2'
+    implementation"io.noties.markwon:core:$markwon_version"
+    implementation"io.noties.markwon:ext-strikethrough:$markwon_version"
+    implementation"io.noties.markwon:ext-tables:$markwon_version"
+    implementation"io.noties.markwon:html:$markwon_version"
+    implementation"io.noties.markwon:image-coil:$markwon_version"
+    implementation"io.noties.markwon:linkify:$markwon_version"
+}

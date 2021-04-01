@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlinx-serialization'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"
+                ]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+
+            all {
+                minHeapSize = "64m"
+                maxHeapSize = "128m"
+            }
+        }
+    }
+}
+
+dependencies {
+    api Libs.Kotlin.stdlib
+
+    api Libs.Coroutines.core
+
+    api Libs.Dagger.dagger
+    api Libs.timber
+
+    api Libs.Moshi.kotlin
+
+    api Libs.Retrofit.retrofit
+    api Libs.OkHttp.loggingInterceptor
+
+    api Libs.store
+
+    api Libs.AndroidX.Paging.common
+}

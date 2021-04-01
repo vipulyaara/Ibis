@@ -1,0 +1,143 @@
+/*
+ * Copyright 2017 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+
+buildscript {
+    ext.compose_version = '1.0.0-beta03'
+    ext.buildConfig = [
+            'compileSdk': 30,
+            'minSdk'    : 23,
+            'targetSdk' : 30,
+    ]
+
+    apply from: rootProject.file('versions.gradle')
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.0-alpha12'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
+        classpath 'com.google.gms:google-services:4.3.5'
+
+        classpath Libs.Kotlin.extensions
+        classpath Libs.Google.crashlyticsGradle
+
+        classpath Libs.Hilt.gradlePlugin
+    }
+}
+
+plugins {
+    id 'com.diffplug.spotless' version '5.10.2'
+    id 'com.github.ben-manes.versions' version '0.36.0'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.30'
+}
+
+allprojects {
+    apply from: rootProject.file('versions.gradle')
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+
+        // Jetpack Compose SNAPSHOTs
+        if (Versions.compose.endsWith("SNAPSHOT")) {
+            maven { url "https://androidx.dev/snapshots/builds/${Versions.composesnapshot}/artifacts/repository/" }
+        }
+
+        // Used for Accompanist snapshots
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+
+        // Used for Roomigrant
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+subprojects {
+    configurations.configureEach {
+        // We forcefully exclude AppCompat + MDC from any transitive dependencies.
+        // This is a Compose app, so there's no need for these.
+        exclude group: 'androidx.appcompat'
+        exclude group: 'com.google.android.material', module: 'material'
+        exclude group: 'com.google.android.material', module: 'material'
+
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            def group = details.requested.group
+            def module = details.requested.module.name
+
+            if (group == 'org.jetbrains.kotlin' && module == 'kotlin-stdlib-jre7') {
+                // kotlin-stdlib-jre7 no longer exists in 1.4, so we force the
+                // kotlin-stdlib module instead
+                details.useTarget Libs.Kotlin.stdlib
+            }
+        }
+    }
+
+    apply plugin: 'com.diffplug.spotless'
+    spotless {
+        kotlin {
+            target '**/*.kt'
+            targetExclude("$buildDir/**/*.kt")
+            targetExclude('bin/**/*.kt')
+
+            ktlint(Versions.ktlint)
+            licenseHeaderFile rootProject.file('spotless/copyright.kt')
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            // Treat all Kotlin warnings as errors
+            allWarningsAsErrors = false
+
+            // Enable experimental coroutines APIs, including Flow
+            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.FlowPreview"
+            freeCompilerArgs += "-Xopt-in=kotlin.Experimental"
+
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+        }
+    }
+}
+
+/**
+ * Update dependencyUpdates task to reject versions which are more 'unstable' than our
+ * current version.
+ */
+tasks.named("dependencyUpdates").configure {
+    rejectVersionIf {
+        def current = DependencyUpdates.versionToRelease(it.currentVersion)
+        // If we're using a SNAPSHOT, ignore since we must be doing so for a reason.
+        if (current == ReleaseType.SNAPSHOT) return true
+
+        // Otherwise we reject if the candidate is more 'unstable' than our version
+        def candidate = DependencyUpdates.versionToRelease(it.candidate.version)
+        return candidate.isLessStableThan(current)
+    }
+}
+
+Object propOrDef(String propertyName, Object defaultValue) {
+    def propertyValue = project.properties[propertyName]
+    return propertyValue != null ? propertyValue : defaultValue
+}

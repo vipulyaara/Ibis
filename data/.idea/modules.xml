@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../CorpBase/CorpBase.iml" filepath="$PROJECT_DIR$/../CorpBase/CorpBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CorpHotel/CorpHotel.iml" filepath="$PROJECT_DIR$/../CorpHotel/CorpHotel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CorpHotels.iml" filepath="$PROJECT_DIR$/../CorpHotels.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CorpNetworking.iml" filepath="$PROJECT_DIR$/CorpNetworking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../CorpUtil/CorpUtil.iml" filepath="$PROJECT_DIR$/../CorpUtil/CorpUtil.iml" />
+    </modules>
+  </component>
+</project>

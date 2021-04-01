@@ -1,0 +1,9 @@
+include ':app'
+include ':markdown'
+include ':ui-common'
+include ':data'
+include ':base'
+include ':editor'
+include ':domain'
+
+rootProject.name = "Ibis"

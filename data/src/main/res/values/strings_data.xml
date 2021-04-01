@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">Error!</string>
+    <string name="retry">Retry</string>
+    <string name="shared_profile_image">Data Saver</string>
+
+    <plurals name="ghazal_count">
+        <item quantity="one">Ghazal</item>
+        <item quantity="other">Ghazals</item>
+    </plurals>
+    <plurals name="nazm_count">
+        <item quantity="one">Nazm</item>
+        <item quantity="other">Nazms</item>
+    </plurals>
+    <plurals name="sher_count">
+        <item quantity="one">Sher</item>
+        <item quantity="other">Sher</item>
+    </plurals>
+    <plurals name="audio_count">
+        <item quantity="one">Audio</item>
+        <item quantity="other">Audios</item>
+    </plurals>
+</resources>

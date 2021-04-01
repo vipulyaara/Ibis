@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlinx-serialization'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "room.incremental"   : "true"
+                ]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(':base')
+    api project(':data')
+
+    implementation Libs.Google.crashlytics
+    implementation Libs.Google.analytics
+
+    implementation Libs.AndroidX.Fragment.fragment
+    implementation Libs.AndroidX.coreKtx
+
+    implementation platform('com.google.firebase:firebase-bom:26.8.0')
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    implementation Libs.timber
+    implementation Libs.jsoup
+    implementation Libs.threeTenAbp
+
+    implementation Libs.Coroutines.core
+    implementation Libs.Coroutines.android
+    implementation Libs.Coroutines.play
+
+    implementation Libs.dataStore
+    api Libs.store
+
+    implementation Libs.Hilt.library
+    kapt Libs.Hilt.compiler
+
+    api Libs.AndroidX.Room.runtime
+    implementation Libs.AndroidX.Room.ktx
+    kapt Libs.AndroidX.Room.compiler
+
+    implementation Libs.Retrofit.serialization
+
+    kapt Libs.Moshi.compiler
+
+    implementation Libs.Serialization.runtime
+
+    implementation Libs.Roomigrant.library
+    kapt Libs.Roomigrant.compiler
+
+    implementation Libs.AndroidX.Paging.runtime
+
+    implementation Libs.Hilt.library
+    kapt Libs.Hilt.compiler
+
+    api Libs.Coroutines.core
+}

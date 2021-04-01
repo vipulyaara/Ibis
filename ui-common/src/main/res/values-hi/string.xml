@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="profile">प्रोफ़ायल</string>
+    <string name="ghazal">ग़ज़ल</string>
+    <string name="nazm">नज़्म</string>
+    <string name="sher">शेर</string>
+    <string name="image_Shayri">तस्वीर शायरी</string>
+    <string name="next">अगला</string>
+    <string name="search_relevant_content">परिणाम</string>
+</resources>

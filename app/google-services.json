@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "445299460634",
+    "project_id": "ibis-ba2cf",
+    "storage_bucket": "ibis-ba2cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445299460634:android:6572620202bed7924edfa3",
+        "android_client_info": {
+          "package_name": "com.ibis.notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445299460634-pakad7gah9ju3vac081b0n61434qiglc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmoXacMjFHPGgrgJL-tOiFuCIWh9oBWg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445299460634-pakad7gah9ju3vac081b0n61434qiglc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
