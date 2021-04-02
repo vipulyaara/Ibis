@@ -6,6 +6,11 @@ Note taking app with real time sync built with Compose
 <img src="https://user-images.githubusercontent.com/6247940/110037302-80f64680-7d3e-11eb-8729-43340808fd3c.png">
 
 
+# Checklist
+- [x] Notes UI with real time sync and offline capabilities
+- [ ] Full text search
+- [ ] Markdown support
+
 ## Architecture
 
 This app focuses on scalable, flexible and reactive app architecure. Parts of the architecture are inspired by Chris Banes' [Tivi app](https://github.com/chrisbanes/tivi).
