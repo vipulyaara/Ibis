@@ -1,9 +1,11 @@
 include ':app'
 include ':markdown'
-include ':ui-common'
 include ':data'
 include ':base'
 include ':editor'
 include ':domain'
+include ':ui-common'
+include ':ui-notes'
+include ':ui-note-detail'
 
 rootProject.name = "Ibis"

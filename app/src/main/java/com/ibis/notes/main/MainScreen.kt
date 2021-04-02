@@ -15,11 +15,11 @@ import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.LocalSystemUiController
 import com.google.accompanist.systemuicontroller.rememberAndroidSystemUiController
-import com.ibis.notes.ROUTE_NOTES_LIST
-import com.ibis.notes.ROUTE_NOTE_DETAIL
-import com.ibis.notes.Screen
+import com.ibis.note.detail.NoteDetail
 import com.ibis.notes.note.NoteList
-import com.ibis.notes.note_detail.NoteDetail
+import com.kafka.ui_common.ROUTE_NOTES_LIST
+import com.kafka.ui_common.ROUTE_NOTE_DETAIL
+import com.kafka.ui_common.Screen
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
