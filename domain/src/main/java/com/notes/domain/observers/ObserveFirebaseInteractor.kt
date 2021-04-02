@@ -17,7 +17,7 @@ abstract class ObserveFirebaseInteractor<P : Any, T> : SubjectInteractor<P, Invo
         createResponseObservable(params).map {
             InvokeResponse.Data(it, ResponseOrigin.Fetcher)
         }.catch {
-            error("firebase failed")
+            throw it
         }.flowOn(Dispatchers.IO)
 
     fun Query.snapshots(): Flow<Pair<QuerySnapshot?, FirebaseFirestoreException?>> {

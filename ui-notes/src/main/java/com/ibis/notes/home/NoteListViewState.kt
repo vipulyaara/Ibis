@@ -1,4 +1,4 @@
-package com.notes.home
+package com.ibis.notes.home
 
 import com.kafka.ui_common.BaseViewState
 import org.rekhta.data.entities.Note

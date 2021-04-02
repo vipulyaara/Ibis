@@ -16,7 +16,7 @@ import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.LocalSystemUiController
 import com.google.accompanist.systemuicontroller.rememberAndroidSystemUiController
 import com.ibis.note.detail.NoteDetail
-import com.ibis.notes.note.NoteList
+import com.ibis.notes.home.NoteList
 import com.kafka.ui_common.ROUTE_NOTES_LIST
 import com.kafka.ui_common.ROUTE_NOTE_DETAIL
 import com.kafka.ui_common.Screen

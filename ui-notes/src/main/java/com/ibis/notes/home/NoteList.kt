@@ -1,4 +1,4 @@
-package com.ibis.notes.note
+package com.ibis.notes.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,6 @@ import androidx.navigation.NavController
 import com.kafka.ui_common.Screen
 import com.kafka.ui_common.navigateTo
 import com.kafka.ui_common.widgets.FullScreenMessage
-import com.notes.home.NoteListViewModel
 import compose.icons.TablerIcons
 import compose.icons.tablericons.Edit
 import org.rekhta.data.entities.Note

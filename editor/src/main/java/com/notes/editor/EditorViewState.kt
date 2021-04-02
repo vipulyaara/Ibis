@@ -1,4 +1,4 @@
-package com.notes.home
+package com.notes.editor
 
 import com.kafka.ui_common.BaseViewState
 

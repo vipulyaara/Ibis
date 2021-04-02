@@ -1,4 +1,4 @@
-package com.notes.home
+package com.notes.editor
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

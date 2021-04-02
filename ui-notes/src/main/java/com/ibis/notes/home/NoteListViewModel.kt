@@ -1,4 +1,4 @@
-package com.notes.home
+package com.ibis.notes.home
 
 import androidx.lifecycle.viewModelScope
 import com.kafka.ui_common.ReduxViewModel

@@ -1,4 +1,4 @@
-package com.ibis.notes.note
+package com.ibis.notes.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable

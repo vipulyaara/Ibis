@@ -1,4 +1,4 @@
-package com.notes.home
+package com.notes.editor
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

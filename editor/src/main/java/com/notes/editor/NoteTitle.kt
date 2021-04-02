@@ -1,33 +1,27 @@
-package com.notes.home
+package com.notes.editor
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisallowComposableCalls
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 
 @ExperimentalAnimatedInsets
 @Composable
-fun Editor(
-    textFieldValue: TextFieldValue,
-    setTextFieldValue: (TextFieldValue) -> Unit,
+fun NoteTitle(
+    titleFieldValue: TextFieldValue,
+    setTitleFieldValue: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    EditorTextField(
-        textFieldValue,
-        { setTextFieldValue(it) },
-        modifier,
-    )
+    TitleTextField(titleFieldValue, setTitleFieldValue, modifier.fillMaxWidth())
 }
 
 @Composable
-fun EditorTextField(
+fun TitleTextField(
     textState: TextFieldValue,
     setState: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier
@@ -38,11 +32,11 @@ fun EditorTextField(
         onValueChange = { setState(it) },
         placeholder = {
             Text(
-                text = "Start typing...",
-                style = MaterialTheme.typography.body1
+                text = "Title",
+                style = MaterialTheme.typography.h6
             )
         },
-        textStyle = MaterialTheme.typography.body1,
+        textStyle = MaterialTheme.typography.h6,
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = MaterialTheme.colors.background,
             unfocusedIndicatorColor = MaterialTheme.colors.background,
@@ -50,7 +44,3 @@ fun EditorTextField(
         ),
     )
 }
-
-@Composable
-inline fun <T> rememberMutableState(key: Any? = null, init: @DisallowComposableCalls () -> T) =
-    remember(key) { mutableStateOf(init()) }

@@ -15,8 +15,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
-import com.notes.home.EditorScreen
-import com.notes.home.rememberMutableState
+import com.notes.editor.EditorScreen
+import com.notes.editor.rememberMutableState
 import compose.icons.TablerIcons
 import compose.icons.tablericons.Check
 
