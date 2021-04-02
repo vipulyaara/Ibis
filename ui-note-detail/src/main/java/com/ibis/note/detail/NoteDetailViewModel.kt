@@ -21,7 +21,6 @@ class NoteDetailViewModel @Inject constructor(
     private val updateNote: UpdateNote,
     savedStateHandle: SavedStateHandle
 ) : ReduxViewModel<NoteDetailViewState>(NoteDetailViewState()) {
-    private var noteId: String
 
     init {
         viewModelScoped {
@@ -32,19 +31,19 @@ class NoteDetailViewModel @Inject constructor(
             }
         }
 
-        noteId = savedStateHandle.get<String>("note_id")!!
+        var noteId = savedStateHandle.get<String>("note_id")!!
 
         if (noteId == "create") {
             noteId = UUID.randomUUID().toString()
             viewModelScope.launchSetState { copy(note = Note(noteId)) }
+        } else {
+            debug { "observing note id $noteId" }
+            observeNoteDetail(noteId)
         }
-
-        debug { "observing note id $noteId" }
-        observeNoteDetail(noteId)
     }
 
     fun saveEditorState(title: String? = null, text: String? = null) {
-        debug { "saveEditorState $noteId $title $text" }
+        debug { "saveEditorState ${currentState.note?.id} $title $text" }
         val noteId = currentState.note!!.id
         val noteTitle = title ?: currentState.note?.title.orEmpty()
         val noteText = text ?: currentState.note?.text.orEmpty()

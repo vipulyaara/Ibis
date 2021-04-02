@@ -9,3 +9,5 @@ include ':ui-notes'
 include ':ui-note-detail'
 
 rootProject.name = "Ibis"
+include ':ui-search'
+include ':ui-auth'

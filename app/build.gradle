@@ -65,6 +65,7 @@ dependencies {
     implementation project(':ui-common')
     implementation project(':ui-notes')
     implementation project(':ui-note-detail')
+    implementation project(':ui-search')
 
     implementation Libs.AndroidX.Lifecycle.livedata
     implementation Libs.AndroidX.Lifecycle.viewmodel
