@@ -42,7 +42,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun MainNavigation(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
 
-    Surface(modifier = modifier, color = Color.Transparent) {
+    Surface(modifier = modifier) {
         NavHost(navController, startDestination = Screen.NotesList.route) {
             composable(ROUTE_NOTES_LIST) {
                 NoteList(navController)

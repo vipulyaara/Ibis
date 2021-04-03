@@ -103,34 +103,4 @@ abstract class SubjectInteractor<P : Any, T> {
     }
 }
 
-abstract class StoreInteractor<P : Any, T> {
-    // Ideally this would be buffer = 0, since we use flatMapLatest below, BUT invoke is not
-    // suspending. This means that we can't suspend while flatMapLatest cancels any
-    // existing flows. The buffer of 1 means that we can use tryEmit() and buffer the value
-    // instead, resulting in mostly the same result.
-    private val paramState = MutableSharedFlow<P>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-
-    operator fun invoke(params: P) {
-        paramState.tryEmit(params)
-    }
-
-    protected abstract fun createObservable(params: P): Flow<InvokeResponse<T?>>
-
-    @ExperimentalCoroutinesApi
-    fun observe(): Flow<InvokeResponse<T?>> =
-        paramState.flatMapLatest { createObservable(it) }.flowOn(Dispatchers.IO)
-}
-
 operator fun <T> SubjectInteractor<Unit, T>.invoke() = invoke(Unit)
-
-suspend inline fun <Key : Any, Output : Any> Store<Key, Output>.fetch(
-    key: Key,
-    forceFresh: Boolean = false
-): Output = when {
-    // If we're forcing a fresh fetch, do it now
-    forceFresh -> fresh(key)
-    else -> get(key)
-}

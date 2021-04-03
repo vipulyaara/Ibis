@@ -7,11 +7,9 @@ import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
-import com.kafka.ui_common.theme.KafkaColorsDark
-import com.kafka.ui_common.theme.KafkaColorsLight
 
 @Composable
-fun SimpleTheme(
+fun IbisTheme(
     useDarkColors: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -19,14 +17,14 @@ fun SimpleTheme(
         colors = if (useDarkColors) KafkaColorsDark else KafkaColorsLight,
         typography = Type
     ) {
-        CompositionLocalProvider(LocalRippleTheme provides RekhtaRippleTheme) {
+        CompositionLocalProvider(LocalRippleTheme provides IbisRippleTheme) {
             content()
         }
     }
 }
 
 @Immutable
-object RekhtaRippleTheme : RippleTheme {
+object IbisRippleTheme : RippleTheme {
     @Composable
     override fun defaultColor() = RippleTheme.defaultRippleColor(
         contentColor = MaterialTheme.colors.surface,

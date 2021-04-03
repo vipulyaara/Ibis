@@ -12,7 +12,7 @@ data class Note(
     @ColumnInfo(name = "title") var title: String = "",
     @ColumnInfo(name = "text") var text: String = "",
     @ColumnInfo(name = "last_updated") var lastUpdated: Long = 0
-) : RekhtaEntity {
+) : RoomEntity {
 
     val formattedDate: String
         get() = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(lastUpdated))
