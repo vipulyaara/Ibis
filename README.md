@@ -19,9 +19,9 @@ It is a version of MVVM with interactors as an additional layer to enhance re-us
 
 
 * [Jetpack compose](https://developer.android.com/jetpack/compose) 
-* [Room](https://developer.android.com/topic/Libs/architecture/room)
+* [Firestore](https://firebase.google.com/docs/firestore)
+* [Room](https://developer.android.com/topic/Libs/architecture/room) (deprecated; using Firestore instead)
 * [Dagger Hilt](https://dagger.dev/hilt/)
-* [ExoPlayer](https://github.com/google/ExoPlayer) - For audio playback
 * Retrofit2, LiveData, Coroutines... a lot more
 
 
