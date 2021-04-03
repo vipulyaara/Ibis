@@ -1,6 +1,7 @@
 package com.notes.domain.observers
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.notes.domain.FirebaseConstants.collection_notes
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -12,7 +13,7 @@ class ObserveNoteList @Inject constructor() : ObserveFirebaseInteractor<Unit, Li
 
     override suspend fun createResponseObservable(params: Unit): Flow<List<Note>> =
         notesCollection
-            .orderBy("title")
+            .orderBy("lastUpdated", Query.Direction.DESCENDING)
             .snapshots()
             .map { (querySnapshot, exception) ->
                 exception?.let { throw it }

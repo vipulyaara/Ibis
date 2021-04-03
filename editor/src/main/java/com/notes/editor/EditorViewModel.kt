@@ -4,7 +4,6 @@ import androidx.lifecycle.SavedStateHandle
 import com.kafka.ui_common.ReduxViewModel
 import com.kafka.ui_common.viewModelScoped
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @HiltViewModel

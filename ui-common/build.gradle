@@ -47,6 +47,9 @@ dependencies {
     implementation Libs.Hilt.library
     kapt Libs.Hilt.compiler
 
+    implementation Libs.AndroidX.Navigation.fragment
+    implementation Libs.AndroidX.Navigation.compose
+
     implementation Libs.Lottie.core
     implementation Libs.Lottie.compose
 

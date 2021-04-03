@@ -68,8 +68,8 @@ private val Slate800 = Color(0xFF232F34)
 
 private val Orange500 = brandRed
 private val Orange700 = Color(0xFFC78522)
-private val Orange800 = Color(0xFFFDD901)
-private val GreenDark = Color(0xFF006128)
+private val Orange800 = Color(0xFFFFC2AC)
+private val GreenDark = Color(0xFF295242)
 
 val KafkaColorsLight = lightColors(
     primary = GreenDark,
