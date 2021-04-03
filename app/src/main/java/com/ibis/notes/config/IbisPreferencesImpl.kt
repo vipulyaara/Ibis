@@ -3,7 +3,7 @@ package com.ibis.notes.config
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.kafka.ui_common.RekhtaPreferences
+import com.kafka.ui_common.IbisPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
@@ -15,7 +15,7 @@ class IbisPreferencesImpl @Inject constructor(
     @ApplicationContext private val context: Context,
     @ProcessLifetime private val processScope: CoroutineScope,
     @Named("app") private val sharedPreferences: SharedPreferences,
-) : RekhtaPreferences {
+) : IbisPreferences {
     private val defaultLanguageValue = 1
 
     private val preferenceKeyChangedFlow = MutableSharedFlow<String>(extraBufferCapacity = 1)

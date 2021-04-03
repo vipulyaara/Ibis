@@ -3,8 +3,8 @@ package com.ibis.notes.home
 import androidx.lifecycle.viewModelScope
 import com.kafka.ui_common.ReduxViewModel
 import com.kafka.ui_common.viewModelScoped
-import com.notes.domain.observers.ObserveNoteList
 import com.notes.domain.interactors.UpdateNote
+import com.notes.domain.observers.ObserveNoteList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import org.ibis.base.InvokeResponse
@@ -21,8 +21,8 @@ class NoteListViewModel @Inject constructor(
     init {
         viewModelScoped {
             observeNoteList.observe().collect {
-                debug { "notes is $it" }
-                if(it is InvokeResponse.Data) {
+                debug { "notes are $it" }
+                if (it is InvokeResponse.Data) {
                     viewModelScope.launchSetState { copy(notes = it.dataOrNull()) }
                 }
 

@@ -19,10 +19,17 @@ class UpdateNote @Inject constructor(
         params.apply {
             if (title.isNotEmpty() || text.isNotEmpty()) {
                 debug { "inserting note $params" }
-                val note = Note(noteId, title, text, System.currentTimeMillis())
+                val updatedTitle = autoAddTitle(title, text)
+                val note = Note(noteId, updatedTitle, text, System.currentTimeMillis())
                 notesCollection.document(params.noteId).set(note, SetOptions.merge())
             }
         }
+    }
+
+    private fun autoAddTitle(title: String, text: String) = if (title.isBlank()) {
+        text.split("\n").firstOrNull().orEmpty()
+    } else {
+        title
     }
 
     data class Params(val noteId: String, val title: String = "", val text: String = "")

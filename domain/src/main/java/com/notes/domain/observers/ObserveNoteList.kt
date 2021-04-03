@@ -3,6 +3,7 @@ package com.notes.domain.observers
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.notes.domain.FirebaseConstants.collection_notes
+import com.notes.domain.FirebaseConstants.query_last_updated
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.rekhta.data.entities.Note
@@ -13,7 +14,7 @@ class ObserveNoteList @Inject constructor() : ObserveFirebaseInteractor<Unit, Li
 
     override suspend fun createResponseObservable(params: Unit): Flow<List<Note>> =
         notesCollection
-            .orderBy("lastUpdated", Query.Direction.DESCENDING)
+            .orderBy(query_last_updated, Query.Direction.DESCENDING)
             .snapshots()
             .map { (querySnapshot, exception) ->
                 exception?.let { throw it }

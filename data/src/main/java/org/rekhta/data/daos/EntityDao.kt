@@ -1,9 +1,9 @@
 package org.rekhta.data.daos
 
 import androidx.room.*
-import org.rekhta.data.entities.RekhtaEntity
+import org.rekhta.data.entities.RoomEntity
 
-abstract class EntityDao<in E : RekhtaEntity> {
+abstract class EntityDao<in E : RoomEntity> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insert(entity: E): Long
 

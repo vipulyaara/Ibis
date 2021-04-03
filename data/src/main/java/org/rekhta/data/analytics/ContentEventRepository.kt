@@ -9,18 +9,13 @@ class ContentEventRepository @Inject constructor(
         return mapOf("keyword" to keyword)
     }
 
-    fun poetDetail(poetId: String, source: String): Map<String, String> {
+    fun noteDetail(noteId: String, source: String): Map<String, String> {
         return mapOf(
-            "poet_id" to poetId,
+            "note_id" to noteId,
             "source" to source,
-            "poet_name" to "",
+            "note_title" to "",
         )
     }
-
-    fun contentDetail(contentId: String, contentTitle: String) = mapOf(
-        "content_id" to contentId,
-        "content_title" to contentTitle
-    )
 
     fun languageSelected(languageCode: Int, source: String) = mapOf(
         "language_code" to languageCode.toString(),

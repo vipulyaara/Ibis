@@ -49,12 +49,6 @@ class NoteDetailViewModel @Inject constructor(
         val noteTitle = title ?: currentState.note?.title.orEmpty()
         val noteText = text ?: currentState.note?.text.orEmpty()
 
-        val newTitle = if (noteTitle.isBlank()) {
-            noteText.split("\n").firstOrNull().orEmpty()
-        } else {
-            noteTitle
-        }
-
-        updateNote(UpdateNote.Params(noteId, newTitle, noteText))
+        updateNote(UpdateNote.Params(noteId, noteTitle, noteText))
     }
 }

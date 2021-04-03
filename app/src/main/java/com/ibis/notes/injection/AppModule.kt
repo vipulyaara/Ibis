@@ -7,7 +7,7 @@ import androidx.lifecycle.coroutineScope
 import com.ibis.notes.config.FirebaseInitializer
 import com.ibis.notes.config.IbisPreferencesImpl
 import com.ibis.notes.config.LoggerInitializer
-import com.kafka.ui_common.RekhtaPreferences
+import com.kafka.ui_common.IbisPreferences
 import com.kafka.ui_common.image.CoilAppInitializer
 import dagger.Binds
 import dagger.Module
@@ -79,5 +79,5 @@ abstract class AppModuleBinds {
 
     @Binds
     @IntoSet
-    abstract fun provideRekhtaPreferences(bind: IbisPreferencesImpl): RekhtaPreferences
+    abstract fun provideRekhtaPreferences(bind: IbisPreferencesImpl): IbisPreferences
 }

@@ -8,7 +8,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.kafka.ui_common.theme.SimpleTheme
+import com.kafka.ui_common.theme.IbisTheme
 import com.ibis.notes.main.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
-                SimpleTheme { MainScreen() }
+                IbisTheme { MainScreen() }
             }
         }
     }
