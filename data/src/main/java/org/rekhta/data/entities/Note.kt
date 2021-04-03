@@ -15,5 +15,5 @@ data class Note(
 ) : RekhtaEntity {
 
     val formattedDate: String
-        get() = SimpleDateFormat("MMM dd", Locale.ENGLISH).format(Date(lastUpdated))
+        get() = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(Date(lastUpdated))
 }

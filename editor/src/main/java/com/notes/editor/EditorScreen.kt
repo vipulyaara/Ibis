@@ -1,6 +1,7 @@
 package com.notes.editor
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -20,16 +21,10 @@ fun EditorScreen(
     textFieldValue: TextFieldValue,
     setTextFieldValue: (TextFieldValue) -> Unit
 ) {
-//    val keyboardController = LocalSoftwareKeyboardController.current
-//    DisposableEffect(Unit) {
-//        keyboardController?.showSoftwareKeyboard()
-//        onDispose {  }
-//    }
-
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 12.dp)
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
             .imePadding()
     ) {
         NoteTitle(titleFieldValue, setTitleFieldValue, Modifier)

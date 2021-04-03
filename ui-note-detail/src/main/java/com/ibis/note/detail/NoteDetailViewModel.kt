@@ -4,8 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.kafka.ui_common.ReduxViewModel
 import com.kafka.ui_common.viewModelScoped
-import com.notes.domain.observers.ObserveNoteDetail
 import com.notes.domain.interactors.UpdateNote
+import com.notes.domain.observers.ObserveNoteDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -34,6 +34,7 @@ class NoteDetailViewModel @Inject constructor(
         var noteId = savedStateHandle.get<String>("note_id")!!
 
         if (noteId == "create") {
+            viewModelScope.launchSetState { copy(createNote = true) }
             noteId = UUID.randomUUID().toString()
             viewModelScope.launchSetState { copy(note = Note(noteId)) }
         } else {
@@ -48,6 +49,12 @@ class NoteDetailViewModel @Inject constructor(
         val noteTitle = title ?: currentState.note?.title.orEmpty()
         val noteText = text ?: currentState.note?.text.orEmpty()
 
-        updateNote(UpdateNote.Params(noteId, noteTitle, noteText))
+        val newTitle = if (noteTitle.isBlank()) {
+            noteText.split("\n").firstOrNull().orEmpty()
+        } else {
+            noteTitle
+        }
+
+        updateNote(UpdateNote.Params(noteId, newTitle, noteText))
     }
 }

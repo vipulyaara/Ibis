@@ -32,9 +32,23 @@ val Manrope = FontFamily(
     Font(R.font.inter_bold, FontWeight.Black)
 )
 
+val Poppins = FontFamily(
+    Font(R.font.poppins_regular, FontWeight.Normal),
+    Font(R.font.poppins_medium, FontWeight.Medium),
+    Font(R.font.poppins_semibold, FontWeight.SemiBold),
+    Font(R.font.poppins_bold, FontWeight.Bold),
+    Font(R.font.inter_bold, FontWeight.Black)
+)
+
 val Type = Typography(
+    defaultFontFamily = Poppins,
+    h6 = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        letterSpacing = 0.4.sp
+    ),
     subtitle1 = TextStyle(
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         letterSpacing = 0.15.sp
     ),
@@ -43,10 +57,16 @@ val Type = Typography(
         fontSize = 14.sp,
         letterSpacing = 0.1.sp
     ),
-    body2 = TextStyle(
+    body1 = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.25.sp
+        lineHeight = 24.sp,
+        letterSpacing = 0.5.sp
     ),
+    body2 = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 13.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.4.sp
+    )
 )

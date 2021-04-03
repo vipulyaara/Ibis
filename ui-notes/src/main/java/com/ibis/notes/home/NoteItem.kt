@@ -27,7 +27,7 @@ fun NoteItem(
             modifier = Modifier
                 .clickable { onContentClicked(note.id) }
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(vertical = 16.dp, horizontal = 24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f)) {
@@ -38,22 +38,22 @@ fun NoteItem(
                     overflow = TextOverflow.Ellipsis
                 )
 
-                Spacer(modifier = Modifier.padding(4.dp))
+                Spacer(modifier = Modifier.padding(2.dp))
 
                 Text(
                     text = note.text,
                     style = MaterialTheme.typography.body2,
-                    color = MaterialTheme.colors.textSecondary,
-                    maxLines = 5,
+                    color = MaterialTheme.colors.textPrimary.copy(alpha = 0.6f),
+                    maxLines = 4,
                     overflow = TextOverflow.Ellipsis
                 )
 
-                Spacer(modifier = Modifier.padding(4.dp))
+                Spacer(modifier = Modifier.padding(2.dp))
 
                 Text(
                     text = note.formattedDate,
-                    style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.SemiBold),
-                    color = MaterialTheme.colors.primary
+                    style = MaterialTheme.typography.caption,
+                    color = MaterialTheme.colors.textSecondary
                 )
             }
         }

@@ -1,5 +1,7 @@
 package com.notes.editor
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -10,7 +12,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
+import com.kafka.ui_common.theme.yellow
 
 @ExperimentalAnimatedInsets
 @Composable
@@ -22,7 +26,7 @@ fun Editor(
     EditorTextField(
         textFieldValue,
         { setTextFieldValue(it) },
-        modifier,
+        modifier
     )
 }
 
@@ -32,22 +36,11 @@ fun EditorTextField(
     setState: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    TextField(
-        modifier = modifier,
+    BasicTextField(
+        modifier = modifier.padding(top = 16.dp),
         value = textState,
         onValueChange = { setState(it) },
-        placeholder = {
-            Text(
-                text = "Start typing...",
-                style = MaterialTheme.typography.body1
-            )
-        },
         textStyle = MaterialTheme.typography.body1,
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.background,
-            unfocusedIndicatorColor = MaterialTheme.colors.background,
-            focusedIndicatorColor = MaterialTheme.colors.background
-        ),
     )
 }
 
