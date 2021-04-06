@@ -11,6 +11,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.imePadding
+import com.google.accompanist.insets.navigationBarsPadding
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimatedInsets
@@ -24,7 +25,6 @@ fun EditorScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
             .imePadding()
     ) {
         NoteTitle(titleFieldValue, setTitleFieldValue, Modifier)
@@ -32,6 +32,7 @@ fun EditorScreen(
             textFieldValue, setTextFieldValue,
             Modifier
                 .weight(1f)
+                .padding(horizontal = 16.dp)
                 .fillMaxWidth()
         )
         TextActions {

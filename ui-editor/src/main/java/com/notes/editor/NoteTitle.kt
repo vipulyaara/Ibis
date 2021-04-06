@@ -30,28 +30,28 @@ fun TitleTextField(
     modifier: Modifier = Modifier
 ) {
 
-    BasicTextField(
-        modifier = modifier,
-        value = textState,
-        onValueChange = { setState(it) },
-        textStyle = MaterialTheme.typography.h6,
-    )
-
-//    TextField(
+//    BasicTextField(
 //        modifier = modifier,
 //        value = textState,
 //        onValueChange = { setState(it) },
-//        placeholder = {
-//            Text(
-//                text = "Title",
-//                style = MaterialTheme.typography.h6
-//            )
-//        },
 //        textStyle = MaterialTheme.typography.h6,
-//        colors = TextFieldDefaults.textFieldColors(
-//            backgroundColor = MaterialTheme.colors.primary,
-//            unfocusedIndicatorColor = MaterialTheme.colors.background,
-//            focusedIndicatorColor = MaterialTheme.colors.background
-//        ),
 //    )
+
+    TextField(
+        modifier = modifier,
+        value = textState,
+        onValueChange = { setState(it) },
+        placeholder = {
+            Text(
+                text = "Title",
+                style = MaterialTheme.typography.h6
+            )
+        },
+        textStyle = MaterialTheme.typography.h6,
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.background,
+            unfocusedIndicatorColor = MaterialTheme.colors.background,
+            focusedIndicatorColor = MaterialTheme.colors.background
+        ),
+    )
 }

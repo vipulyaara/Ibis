@@ -38,7 +38,7 @@ fun NoteList(navController: NavController) {
         topBar = { topBar() },
         floatingActionButton = {
             CreateNoteFab {
-                navController.navigateTo(Screen.NoteDetail("create"))
+                navController.navigateTo(Screen.CreateNote)
             }
         }
     ) {

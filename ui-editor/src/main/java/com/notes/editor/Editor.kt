@@ -2,10 +2,7 @@ package com.notes.editor
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisallowComposableCalls
 import androidx.compose.runtime.mutableStateOf
@@ -14,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
+import com.kafka.ui_common.theme.textPrimary
+import com.kafka.ui_common.theme.textSecondary
 import com.kafka.ui_common.theme.yellow
 
 @ExperimentalAnimatedInsets
@@ -40,7 +39,8 @@ fun EditorTextField(
         modifier = modifier.padding(top = 16.dp),
         value = textState,
         onValueChange = { setState(it) },
-        textStyle = MaterialTheme.typography.body1,
+        textStyle = MaterialTheme.typography.body1
+            .copy(color = MaterialTheme.colors.textPrimary.copy(alpha = 0.7f)),
     )
 }
 

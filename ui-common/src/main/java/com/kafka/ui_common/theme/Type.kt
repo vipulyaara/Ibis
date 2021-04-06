@@ -41,14 +41,14 @@ val Poppins = FontFamily(
 )
 
 val Type = Typography(
-    defaultFontFamily = Poppins,
+    defaultFontFamily = Inter,
     h6 = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         letterSpacing = 0.4.sp
     ),
     subtitle1 = TextStyle(
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         letterSpacing = 0.15.sp
     ),
@@ -58,15 +58,14 @@ val Type = Typography(
         letterSpacing = 0.1.sp
     ),
     body1 = TextStyle(
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+        lineHeight = 24.sp
     ),
     body2 = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.4.sp
+        lineHeight = 18.sp,
+        letterSpacing = 0.2.sp
     )
 )

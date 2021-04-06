@@ -11,8 +11,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.ibis.base.ifData
 import org.rekhta.data.debug
-import org.rekhta.data.entities.Note
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,24 +29,14 @@ class NoteDetailViewModel @Inject constructor(
             }
         }
 
-        var noteId = savedStateHandle.get<String>("note_id")!!
+        val noteId = savedStateHandle.get<String>("note_id")!!
 
-        if (noteId == "create") {
-            viewModelScope.launchSetState { copy(createNote = true) }
-            noteId = UUID.randomUUID().toString()
-            viewModelScope.launchSetState { copy(note = Note(noteId)) }
-        } else {
-            debug { "observing note id $noteId" }
-            observeNoteDetail(noteId)
-        }
+        debug { "observing note id $noteId" }
+        observeNoteDetail(noteId)
     }
 
-    fun saveEditorState(title: String? = null, text: String? = null) {
+    fun saveEditorState(title: String, text: String) {
         debug { "saveEditorState ${currentState.note?.id} $title $text" }
-        val noteId = currentState.note!!.id
-        val noteTitle = title ?: currentState.note?.title.orEmpty()
-        val noteText = text ?: currentState.note?.text.orEmpty()
-
-        updateNote(UpdateNote.Params(noteId, noteTitle, noteText))
+        updateNote(UpdateNote.Params(currentState.note!!.id, title, text))
     }
 }

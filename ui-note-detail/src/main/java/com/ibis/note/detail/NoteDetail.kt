@@ -78,7 +78,7 @@ fun NoteDetail() {
 }
 
 @Composable
-private fun TopBar(onDoneClicked: () -> Unit) {
+fun TopBar(onDoneClicked: () -> Unit) {
     TopAppBar(backgroundColor = MaterialTheme.colors.background, elevation = 0.dp) {
         Row(
             modifier = Modifier
