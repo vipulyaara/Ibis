@@ -1,5 +1,5 @@
 # Ibis
-Note taking app with real time sync built with Compose
+[In Progress] Note taking app with real time sync built with Compose
 
 <img src="https://user-images.githubusercontent.com/6247940/113428617-62d04480-93d7-11eb-8af2-8fd1f7da55b9.png">
 
