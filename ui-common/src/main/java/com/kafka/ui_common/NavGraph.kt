@@ -2,7 +2,6 @@ package com.kafka.ui_common
 
 import androidx.navigation.NavController
 import androidx.navigation.NavOptionsBuilder
-import androidx.navigation.compose.navigate
 
 const val ROUTE_NOTES_LIST = "notes"
 const val ROUTE_CREATE_NOTE = "create_note"

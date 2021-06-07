@@ -4,6 +4,8 @@ import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -19,13 +21,11 @@ import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.notes.editor.EditorScreen
 import com.notes.editor.rememberMutableState
-import compose.icons.TablerIcons
-import compose.icons.tablericons.Check
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimatedInsets
 @Composable
-fun NoteDetail() {
+fun NoteDetailScreen() {
     val noteViewModel: NoteDetailViewModel = hiltNavGraphViewModel()
     val noteViewState by noteViewModel.state.collectAsState()
 
@@ -35,10 +35,10 @@ fun NoteDetail() {
     val keyboardController = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(Unit) {
-        keyboardController?.showSoftwareKeyboard()
+        keyboardController?.show()
     }
 
-    val backPressDispatcher = LocalOnBackPressedDispatcherOwner.current.onBackPressedDispatcher
+    val backPressDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxSize()) {
         noteViewState.note?.let {
@@ -60,7 +60,7 @@ fun NoteDetail() {
                 topBar = {
                     TopBar {
                         noteViewModel.saveEditorState(titleFieldValue.text, textFieldValue.text)
-                        backPressDispatcher.onBackPressed()
+                        backPressDispatcher?.onBackPressed()
                     }
                 },
                 backgroundColor = MaterialTheme.colors.background,
@@ -79,7 +79,7 @@ fun NoteDetail() {
 
 @Composable
 fun TopBar(onDoneClicked: () -> Unit) {
-    TopAppBar(backgroundColor = MaterialTheme.colors.background, elevation = 0.dp) {
+    TopAppBar(backgroundColor = MaterialTheme.colors.background, elevation = 4.dp) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -91,7 +91,7 @@ fun TopBar(onDoneClicked: () -> Unit) {
                     .align(Alignment.CenterVertically)
             ) {
                 Icon(
-                    imageVector = TablerIcons.Check,
+                    imageVector = Icons.Default.Check,
                     contentDescription = null,
                     tint = MaterialTheme.colors.primary,
                     modifier = Modifier.align(Alignment.Center)

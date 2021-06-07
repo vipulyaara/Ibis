@@ -1,5 +1,4 @@
 buildscript {
-    ext.compose_version = '1.0.0-beta03'
     ext.buildConfig = [
             'compileSdk': 30,
             'minSdk'    : 23,
@@ -11,19 +10,18 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha12'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.4"
-        classpath 'com.google.gms:google-services:4.3.5'
-
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha01'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.5.10"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
         classpath Libs.Kotlin.extensions
-        classpath Libs.Google.crashlyticsGradle
+
+        classpath Libs.Google.gmsGoogleServices
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.0'
 
         classpath Libs.Hilt.gradlePlugin
     }

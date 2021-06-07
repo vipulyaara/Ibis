@@ -44,7 +44,7 @@ fun NoteItem(
                     text = note.text,
                     style = MaterialTheme.typography.body2,
                     color = MaterialTheme.colors.textPrimary.copy(alpha = 0.7f),
-                    maxLines = 4,
+                    maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
 

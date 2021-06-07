@@ -49,7 +49,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion Versions.compose
     }
 
     packagingOptions {
@@ -83,7 +83,7 @@ dependencies {
 
     implementation Libs.AndroidX.emoji
     implementation Libs.AndroidX.Fragment.fragmentKtx
-    implementation Libs.AndroidX.Navigation.fragment
+
     implementation Libs.AndroidX.Navigation.compose
 
     implementation Libs.AndroidX.Compose.foundation
@@ -122,10 +122,6 @@ dependencies {
 
     implementation Libs.Google.crashlytics
     implementation Libs.Google.analytics
-
-    implementation"br.com.devsrsouza.compose.icons.android:font-awesome:0.1.1"
-    implementation"br.com.devsrsouza.compose.icons.android:tabler-icons:0.1.1"
-    implementation"br.com.devsrsouza.compose.icons.android:feather:0.1.1"
 }
 
 android.applicationVariants.all { variant ->

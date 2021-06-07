@@ -41,7 +41,7 @@ dependencies {
 
     implementation Libs.AndroidX.coreKtx
     implementation Libs.AndroidX.Fragment.fragment
-    implementation Libs.AndroidX.Navigation.fragment
+
     implementation Libs.AndroidX.Navigation.compose
     implementation Libs.AndroidX.Hilt.navigation
     implementation Libs.AndroidX.Hilt.compose
@@ -58,7 +58,7 @@ dependencies {
     implementation Libs.AndroidX.Compose.tooling
     implementation Libs.AndroidX.Compose.livedata
 
-    implementation Libs.AndroidX.Navigation.fragment
+
     implementation Libs.AndroidX.Navigation.compose
 
     implementation Libs.Accompanist.coil
@@ -71,8 +71,4 @@ dependencies {
     kapt Libs.Hilt.compiler
 
     kapt Libs.AndroidX.Hilt.compiler
-
-    implementation"br.com.devsrsouza.compose.icons.android:font-awesome:0.1.1"
-    implementation"br.com.devsrsouza.compose.icons.android:tabler-icons:0.1.1"
-    implementation"br.com.devsrsouza.compose.icons.android:feather:0.1.1"
 }

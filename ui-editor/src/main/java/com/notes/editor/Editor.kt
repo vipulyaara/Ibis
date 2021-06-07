@@ -39,8 +39,7 @@ fun EditorTextField(
         modifier = modifier.padding(top = 16.dp),
         value = textState,
         onValueChange = { setState(it) },
-        textStyle = MaterialTheme.typography.body1
-            .copy(color = MaterialTheme.colors.textPrimary.copy(alpha = 0.7f)),
+        textStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.textPrimary),
     )
 }
 

@@ -4,19 +4,16 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.google.accompanist.insets.statusBarsPadding
-import com.google.accompanist.systemuicontroller.LocalSystemUiController
-import com.google.accompanist.systemuicontroller.rememberAndroidSystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ibis.note.detail.CreateNote
-import com.ibis.note.detail.NoteDetail
+import com.ibis.note.detail.NoteDetailScreen
 import com.ibis.notes.home.NoteList
 import com.kafka.ui_common.ROUTE_CREATE_NOTE
 import com.kafka.ui_common.ROUTE_NOTES_LIST
@@ -28,13 +25,10 @@ import com.kafka.ui_common.Screen
 @ExperimentalAnimatedInsets
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    val systemUiController = rememberAndroidSystemUiController()
-    CompositionLocalProvider(
-        LocalSystemUiController provides systemUiController
-    ) {
-        LocalSystemUiController.current.setSystemBarsColor(MaterialTheme.colors.background)
-        MainNavigation(modifier.statusBarsPadding())
-    }
+    val systemUiController = rememberSystemUiController()
+
+    systemUiController.setSystemBarsColor(MaterialTheme.colors.background)
+    MainNavigation(modifier.statusBarsPadding())
 }
 
 @ExperimentalComposeUiApi
@@ -53,7 +47,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
                 CreateNote(navController)
             }
             composable(ROUTE_NOTE_DETAIL) {
-                NoteDetail()
+                NoteDetailScreen()
             }
         }
     }

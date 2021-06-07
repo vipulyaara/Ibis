@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,11 +22,6 @@ import com.kafka.ui_common.Screen
 import com.kafka.ui_common.navigateTo
 import com.kafka.ui_common.widgets.AutoSizedCircularProgressIndicator
 import com.kafka.ui_common.widgets.FullScreenMessage
-import compose.icons.FontAwesomeIcons
-import compose.icons.TablerIcons
-import compose.icons.fontawesomeicons.Regular
-import compose.icons.fontawesomeicons.regular.UserCircle
-import compose.icons.tablericons.Edit
 import org.rekhta.data.entities.Note
 
 @ExperimentalAnimationApi
@@ -71,7 +69,7 @@ private fun EmptyNotes() {
 @Composable
 private fun CreateNoteFab(onClick: () -> Unit) {
     FloatingActionButton(modifier = Modifier.padding(12.dp), onClick = onClick) {
-        Icon(imageVector = TablerIcons.Edit, contentDescription = null)
+        Icon(imageVector = Icons.Default.Add, contentDescription = null)
     }
 }
 
@@ -91,7 +89,7 @@ private fun TopBar(onProfileClicked: () -> Unit) {
 
             IconButton(modifier = Modifier.padding(14.dp), onClick = onProfileClicked) {
                 Icon(
-                    imageVector = FontAwesomeIcons.Regular.UserCircle,
+                    imageVector = Icons.Default.Person,
                     contentDescription = null,
                     tint = MaterialTheme.colors.secondary
                 )
