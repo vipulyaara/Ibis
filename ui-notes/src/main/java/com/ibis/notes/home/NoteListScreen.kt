@@ -1,12 +1,11 @@
 package com.ibis.notes.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -16,7 +15,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kafka.ui_common.Screen
 import com.kafka.ui_common.navigateTo
@@ -26,18 +25,16 @@ import org.rekhta.data.entities.Note
 
 @ExperimentalAnimationApi
 @Composable
-fun NoteList(navController: NavController) {
-    val noteListViewModel: NoteListViewModel = hiltNavGraphViewModel()
+fun NoteListScreen(navController: NavController) {
+    val noteListViewModel: NoteListViewModel = hiltViewModel()
     val noteListViewState by noteListViewModel.state.collectAsState()
 
-    val topBar: @Composable () -> Unit = { TopBar {} }
+    val topBar: @Composable () -> Unit = { NoteListTopBar {} }
 
     Scaffold(
         topBar = { topBar() },
         floatingActionButton = {
-            CreateNoteFab {
-                navController.navigateTo(Screen.CreateNote)
-            }
+            CreateNoteFab { navController.navigateTo(Screen.CreateNote) }
         }
     ) {
         noteListViewState.notes?.let {
@@ -53,6 +50,17 @@ fun NoteList(navController: NavController) {
 @ExperimentalAnimationApi
 @Composable
 private fun NotesColumn(list: List<Note>, onNoteClicked: (String) -> Unit) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        list.forEach {
+            NoteItem(note = it) { onNoteClicked(it) }
+        }
+    }
+}
+
+// performance of LazyColumn is still degraded so use NotesColumn
+@ExperimentalAnimationApi
+@Composable
+private fun NotesLazyColumn(list: List<Note>, onNoteClicked: (String) -> Unit) {
     LazyColumn(contentPadding = PaddingValues(top = 16.dp, bottom = 16.dp)) {
         items(list) {
             NoteItem(note = it) { onNoteClicked(it) }
@@ -74,11 +82,11 @@ private fun CreateNoteFab(onClick: () -> Unit) {
 }
 
 @Composable
-private fun TopBar(onProfileClicked: () -> Unit) {
+private fun NoteListTopBar(onProfileClicked: () -> Unit) {
     TopAppBar(
         title = {},
         backgroundColor = MaterialTheme.colors.background,
-        elevation = 1.dp,
+        elevation = 4.dp,
         actions = {
             AutoSizedCircularProgressIndicator(
                 modifier = Modifier

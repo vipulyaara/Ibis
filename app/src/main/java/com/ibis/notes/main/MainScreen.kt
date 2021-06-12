@@ -14,7 +14,7 @@ import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ibis.note.detail.CreateNote
 import com.ibis.note.detail.NoteDetailScreen
-import com.ibis.notes.home.NoteList
+import com.ibis.notes.home.NoteListScreen
 import com.kafka.ui_common.ROUTE_CREATE_NOTE
 import com.kafka.ui_common.ROUTE_NOTES_LIST
 import com.kafka.ui_common.ROUTE_NOTE_DETAIL
@@ -25,9 +25,7 @@ import com.kafka.ui_common.Screen
 @ExperimentalAnimatedInsets
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    val systemUiController = rememberSystemUiController()
-
-    systemUiController.setSystemBarsColor(MaterialTheme.colors.background)
+    rememberSystemUiController().setSystemBarsColor(MaterialTheme.colors.background)
     MainNavigation(modifier.statusBarsPadding())
 }
 
@@ -41,7 +39,7 @@ fun MainNavigation(modifier: Modifier = Modifier) {
     Surface(modifier = modifier) {
         NavHost(navController, startDestination = Screen.NotesList.route) {
             composable(ROUTE_NOTES_LIST) {
-                NoteList(navController)
+                NoteListScreen(navController)
             }
             composable(ROUTE_CREATE_NOTE) {
                 CreateNote(navController)

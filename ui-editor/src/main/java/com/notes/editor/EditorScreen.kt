@@ -17,8 +17,6 @@ import com.google.accompanist.insets.navigationBarsPadding
 @ExperimentalAnimatedInsets
 @Composable
 fun EditorScreen(
-    titleFieldValue: TextFieldValue,
-    setTitleFieldValue: (TextFieldValue) -> Unit,
     textFieldValue: TextFieldValue,
     setTextFieldValue: (TextFieldValue) -> Unit
 ) {
@@ -27,7 +25,6 @@ fun EditorScreen(
             .fillMaxSize()
             .imePadding()
     ) {
-        NoteTitle(titleFieldValue, setTitleFieldValue, Modifier)
         Editor(
             textFieldValue, setTextFieldValue,
             Modifier

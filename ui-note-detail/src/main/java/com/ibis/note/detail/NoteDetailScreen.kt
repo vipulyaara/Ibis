@@ -67,8 +67,6 @@ fun NoteDetailScreen() {
                 modifier = Modifier.fillMaxSize()
             ) {
                 EditorScreen(
-                    titleFieldValue,
-                    setTitleFieldValue,
                     textFieldValue,
                     setTextFieldValue
                 )

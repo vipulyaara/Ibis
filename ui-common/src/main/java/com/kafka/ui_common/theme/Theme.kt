@@ -23,6 +23,7 @@ fun IbisTheme(
     }
 }
 
+// this should be the default provider in material library in future upgrades
 @Immutable
 object IbisRippleTheme : RippleTheme {
     @Composable

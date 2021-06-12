@@ -6,6 +6,7 @@ import com.kafka.ui_common.ReduxViewModel
 import com.notes.domain.interactors.UpdateNote
 import com.notes.domain.observers.ObserveNoteDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.rekhta.data.debug
 import java.util.*
 import javax.inject.Inject
 
@@ -21,6 +22,7 @@ class CreateViewModel @Inject constructor(
     }
 
     fun saveEditorState(title: String, text: String) {
+        debug { "save state $title $text" }
         updateNote(UpdateNote.Params(currentState.noteId!!, title, text))
     }
 }
