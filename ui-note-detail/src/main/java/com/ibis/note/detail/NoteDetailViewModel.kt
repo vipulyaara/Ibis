@@ -37,6 +37,6 @@ class NoteDetailViewModel @Inject constructor(
 
     fun saveEditorState(title: String, text: String) {
         debug { "saveEditorState ${currentState.note?.id} $title $text" }
-        updateNote(UpdateNote.Params(currentState.note!!.id, title, text))
+        updateNote(UpdateNote.Params(currentState.note!!.id, "Unknown Title", text.trim()))
     }
 }

@@ -1,7 +1,9 @@
 package com.ibis.notes.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -19,7 +21,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kafka.ui_common.Screen
 import com.kafka.ui_common.navigateTo
-import com.kafka.ui_common.widgets.AutoSizedCircularProgressIndicator
 import com.kafka.ui_common.widgets.FullScreenMessage
 import org.rekhta.data.entities.Note
 
@@ -29,10 +30,16 @@ fun NoteListScreen(navController: NavController) {
     val noteListViewModel: NoteListViewModel = hiltViewModel()
     val noteListViewState by noteListViewModel.state.collectAsState()
 
-    val topBar: @Composable () -> Unit = { NoteListTopBar {} }
+    val onProfileClicked = {
+        if (noteListViewState.isUserLoggedIn) {
+            navController.navigateTo(Screen.Profile)
+        } else {
+            navController.navigateTo(Screen.Login)
+        }
+    }
 
     Scaffold(
-        topBar = { topBar() },
+        topBar = { NoteListTopBar { onProfileClicked() } },
         floatingActionButton = {
             CreateNoteFab { navController.navigateTo(Screen.CreateNote) }
         }
@@ -41,7 +48,9 @@ fun NoteListScreen(navController: NavController) {
             if (it.isEmpty()) {
                 EmptyNotes()
             } else {
-                NotesColumn(navController, it) { navController.navigateTo(Screen.NoteDetail(it)) }
+                NotesColumn(navController, it, noteListViewState.isUserLoggedIn) {
+                    navController.navigateTo(Screen.NoteDetail(it))
+                }
             }
         }
     }
@@ -49,13 +58,20 @@ fun NoteListScreen(navController: NavController) {
 
 @ExperimentalAnimationApi
 @Composable
-private fun NotesColumn(navController: NavController, list: List<Note>, onNoteClicked: (String) -> Unit) {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        LoginWidget(modifier = Modifier.padding(12.dp)) {
-            navController.navigateTo(Screen.Login)
-        }
-        list.forEach {
-            NoteItem(note = it) { onNoteClicked(it) }
+private fun NotesColumn(
+    navController: NavController,
+    list: List<Note>,
+    isUserLoggedIn: Boolean,
+    onNoteClicked: (String) -> Unit
+) {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState()).padding(top = 12.dp)) {
+        list.forEachIndexed { index, note ->
+            if (index.coerceAtMost(list.size) == 1 && !isUserLoggedIn) {
+                LoginWidget(modifier = Modifier.padding(12.dp)) {
+                    navController.navigateTo(Screen.Login)
+                }
+            }
+            NoteItem(note = note) { onNoteClicked(it) }
         }
     }
 }
@@ -91,18 +107,11 @@ private fun NoteListTopBar(onProfileClicked: () -> Unit) {
         backgroundColor = MaterialTheme.colors.background,
         elevation = 4.dp,
         actions = {
-//            AutoSizedCircularProgressIndicator(
-//                modifier = Modifier
-//                    .aspectRatio(1f)
-//                    .fillMaxHeight()
-//                    .padding(16.dp)
-//            )
-
             IconButton(modifier = Modifier.padding(14.dp), onClick = onProfileClicked) {
                 Icon(
                     imageVector = Icons.Default.Person,
                     contentDescription = null,
-                    tint = MaterialTheme.colors.secondary
+                    tint = MaterialTheme.colors.onBackground
                 )
             }
         }

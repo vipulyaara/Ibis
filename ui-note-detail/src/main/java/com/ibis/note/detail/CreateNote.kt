@@ -33,7 +33,7 @@ fun CreateNote(navController: NavController) {
 
     Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxSize()) {
         val (titleFieldValue, setTitleFieldValue) = rememberMutableState { TextFieldValue(text = "") }
-        val (textFieldValue, setTextFieldValue) = rememberMutableState { TextFieldValue(text = "") }
+        val (textFieldValue, setTextFieldValue) = rememberMutableState { TextFieldValue(text = "\n\n") }
 
         Scaffold(
             topBar = {

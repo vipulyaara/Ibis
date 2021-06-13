@@ -4,8 +4,13 @@ import android.util.Patterns
 import com.kafka.ui_common.ReduxViewModel
 import com.kafka.ui_common.UiError
 import com.kafka.ui_common.viewModelScoped
+import com.notes.domain.interactors.LoginUser
+import com.notes.domain.interactors.LoginUserWithLink
+import com.notes.domain.interactors.RegisterUser
+import com.notes.domain.observers.ObserveUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.ibis.base.InvokeStarted
+import org.ibis.base.InvokeStatus
 import org.ibis.base.errorMessageOrNull
 import javax.inject.Inject
 
@@ -29,19 +34,10 @@ internal class AuthViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         viewModelScoped {
-            when {
-                email.isValidEmail().not() -> {
-                    setState { copy(error = UiError("Please enter valid email")) }
-                }
-                password.isValidPassword().not() -> {
-                    setState { copy(error = UiError("Please enter valid password")) }
-                }
-                else -> {
+            validateEmail(email) {
+                validatePassword(password) {
                     loginUser(LoginUser.Params(email, password)).collectAndSetState {
-                        copy(
-                            error = it.errorMessageOrNull()?.let { UiError(it) },
-                            isLoading = it is InvokeStarted
-                        )
+                        update(it)
                     }
                 }
             }
@@ -50,19 +46,10 @@ internal class AuthViewModel @Inject constructor(
 
     fun signUp(email: String, password: String) {
         viewModelScoped {
-            when {
-                email.isValidEmail().not() -> {
-                    setState { copy(error = UiError("Please enter valid email")) }
-                }
-                password.isValidPassword().not() -> {
-                    setState { copy(error = UiError("Please enter valid password")) }
-                }
-                else -> {
+            validateEmail(email) {
+                validatePassword(password) {
                     registerUser(RegisterUser.Params(email, password)).collectAndSetState {
-                        copy(
-                            error = it.errorMessageOrNull()?.let { UiError(it) },
-                            isLoading = it is InvokeStarted
-                        )
+                        update(it)
                     }
                 }
             }
@@ -71,19 +58,32 @@ internal class AuthViewModel @Inject constructor(
 
     fun sendLink(email: String) {
         viewModelScoped {
-            when {
-                email.isValidEmail().not() -> {
-                    setState { copy(error = UiError("Please enter valid email")) }
-                }
-                else -> {
-                    loginUserWithLink(LoginUserWithLink.Params(email)).collectAndSetState {
-                        copy(
-                            error = it.errorMessageOrNull()?.let { UiError(it) },
-                            isLoading = it is InvokeStarted
-                        )
-                    }
+            validateEmail(email) {
+                loginUserWithLink(LoginUserWithLink.Params(email)).collectAndSetState {
+                    update(it)
                 }
             }
+        }
+    }
+
+    private fun AuthViewState.update(invokeStatus: InvokeStatus) = copy(
+        error = invokeStatus.errorMessageOrNull()?.let { UiError(it) },
+        isLoading = invokeStatus is InvokeStarted
+    )
+
+    private suspend fun validateEmail(email: String, onValidate: suspend () -> Unit) {
+        if (!email.isValidEmail()) {
+            setState { copy(error = UiError("Please enter valid email")) }
+        } else {
+            onValidate()
+        }
+    }
+
+    private suspend fun validatePassword(password: String, onValidate: suspend () -> Unit) {
+        if (!password.isValidPassword()) {
+            setState { copy(error = UiError("Please enter valid password")) }
+        } else {
+            onValidate()
         }
     }
 

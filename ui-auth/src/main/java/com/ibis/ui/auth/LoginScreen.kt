@@ -32,7 +32,6 @@ import com.google.accompanist.insets.navigationBarsPadding
 import com.kafka.ui_common.*
 import com.kafka.ui_common.theme.iconPrimary
 import com.kafka.ui_common.theme.textSecondary
-import com.kafka.ui_common.widgets.SwipeDismissSnackbar
 
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
@@ -42,16 +41,18 @@ fun LoginScreen(navController: NavHostController) {
     val authViewModel: AuthViewModel = hiltViewModel()
     val authViewState by authViewModel.state.collectAsState()
 
-    var authType by rememberMutableState { AuthType.Login }
+    if (authViewState.currentUser != null) {
+        navController.navigateTo(Screen.NotesList) {
+            popUpTo(navController.graph.startDestinationRoute.orEmpty())
+        }
+    }
 
+    var authType by rememberMutableState { AuthType.Login }
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         modifier = Modifier.navigationBarsPadding(),
         scaffoldState = scaffoldState,
-        snackbarHost = {
-            it.currentSnackbarData?.let { SwipeDismissSnackbar(data = it) }
-        }
     ) {
         Column(
             modifier = Modifier
@@ -60,10 +61,6 @@ fun LoginScreen(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val keyboard = LocalSoftwareKeyboardController.current
-
-            if (authViewState.currentUser != null) {
-                Text(text = authViewState.currentUser!!.id)
-            }
 
             LoginByEmail(
                 authType = authType,

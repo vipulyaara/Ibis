@@ -1,5 +1,5 @@
 package org.rekhta.data
 
 object DeepLinks {
-    val domain = "localhost"
+    val domain = "http://ibis.page.link"
 }

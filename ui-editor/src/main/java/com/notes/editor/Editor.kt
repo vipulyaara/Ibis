@@ -19,14 +19,9 @@ fun Editor(
     setTextFieldValue: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val annotatedString = remember(textFieldValue.annotatedString) {
-        buildAnnotatedString {
-            append("\n${textFieldValue.annotatedString}")
-        }
-    }
     EditorTextField(
-        annotatedString,
-        { setTextFieldValue(TextFieldValue(annotatedString, TextRange(annotatedString.length))) },
+        textFieldValue.annotatedString,
+        { setTextFieldValue(TextFieldValue(it, TextRange(it.length))) },
         modifier
     )
 }

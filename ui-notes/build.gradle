@@ -29,6 +29,7 @@ dependencies {
     api project(':domain')
     api project(':markdown')
     api project(':ui-common')
+    api project(':ui-auth')
 
     implementation Libs.AndroidX.Lifecycle.livedata
     implementation Libs.AndroidX.Lifecycle.viewmodel

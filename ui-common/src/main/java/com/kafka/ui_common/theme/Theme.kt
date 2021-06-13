@@ -2,10 +2,8 @@ package com.kafka.ui_common.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 
 @Composable
@@ -17,9 +15,7 @@ fun IbisTheme(
         colors = if (useDarkColors) KafkaColorsDark else KafkaColorsLight,
         typography = Type
     ) {
-        CompositionLocalProvider(LocalRippleTheme provides IbisRippleTheme) {
-            content()
-        }
+        content()
     }
 }
 

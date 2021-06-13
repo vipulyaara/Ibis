@@ -36,6 +36,7 @@ dependencies {
     implementation Libs.Firebase.crashlytics
     implementation Libs.Firebase.analytics
     implementation Libs.Firebase.firestore
+    implementation Libs.Firebase.auth
 
     implementation Libs.AndroidX.Fragment.fragment
     implementation Libs.AndroidX.coreKtx

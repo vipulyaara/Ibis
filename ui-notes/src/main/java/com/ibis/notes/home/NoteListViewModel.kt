@@ -5,29 +5,37 @@ import com.kafka.ui_common.ReduxViewModel
 import com.kafka.ui_common.viewModelScoped
 import com.notes.domain.interactors.UpdateNote
 import com.notes.domain.observers.ObserveNoteList
+import com.notes.domain.observers.ObserveUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
-import org.ibis.base.InvokeResponse
+import org.ibis.base.ifData
 import org.rekhta.data.debug
 import org.rekhta.data.entities.Note
 import javax.inject.Inject
 
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
-    observeNoteList: ObserveNoteList,
+    private val observeNoteList: ObserveNoteList,
+    observeUser: ObserveUser,
     private val updateNote: UpdateNote
 ) : ReduxViewModel<NoteListViewState>(NoteListViewState()) {
 
     init {
         viewModelScoped {
             observeNoteList.observe().collect {
-                debug { "notes are $it" }
-                if (it is InvokeResponse.Data) {
-                    viewModelScope.launchSetState { copy(notes = it.dataOrNull()) }
-                }
+                it.ifData { viewModelScope.launchSetState { copy(notes = it) } }
             }
         }
 
+        viewModelScoped {
+            observeUser.observe().collectAndSetState { copy(isUserLoggedIn = it != null) }
+        }
+
+        refresh()
+        observeUser(Unit)
+    }
+
+    private fun refresh() {
         observeNoteList(Unit)
     }
 

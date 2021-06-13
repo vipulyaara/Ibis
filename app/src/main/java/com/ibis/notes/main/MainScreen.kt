@@ -10,12 +10,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
+import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ibis.note.detail.CreateNote
 import com.ibis.note.detail.NoteDetailScreen
 import com.ibis.notes.home.NoteListScreen
 import com.ibis.ui.auth.LoginScreen
+import com.ibis.ui.auth.profile.UserProfile
 import com.kafka.ui_common.*
 
 @ExperimentalComposeUiApi
@@ -23,8 +25,8 @@ import com.kafka.ui_common.*
 @ExperimentalAnimatedInsets
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    rememberSystemUiController().setSystemBarsColor(MaterialTheme.colors.background)
-    MainNavigation(modifier.statusBarsPadding())
+    rememberSystemUiController().setSystemBarsColor(MaterialTheme.colors.primary)
+    MainNavigation(modifier.statusBarsPadding().navigationBarsPadding())
 }
 
 @ExperimentalComposeUiApi
@@ -47,6 +49,9 @@ fun MainNavigation(modifier: Modifier = Modifier) {
             }
             composable(ROUTE_LOGIN) {
                 LoginScreen(navController = navController)
+            }
+            composable(ROUTE_PROFILE) {
+                UserProfile(navController = navController)
             }
         }
     }

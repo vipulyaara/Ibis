@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltNavGraphViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.insets.ExperimentalAnimatedInsets
 import com.notes.editor.EditorScreen
 import com.notes.editor.rememberMutableState
@@ -26,7 +26,7 @@ import com.notes.editor.rememberMutableState
 @ExperimentalAnimatedInsets
 @Composable
 fun NoteDetailScreen() {
-    val noteViewModel: NoteDetailViewModel = hiltNavGraphViewModel()
+    val noteViewModel: NoteDetailViewModel = hiltViewModel()
     val noteViewState by noteViewModel.state.collectAsState()
 
     val title = noteViewState.note?.title.orEmpty()
