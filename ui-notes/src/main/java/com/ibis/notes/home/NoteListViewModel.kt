@@ -25,8 +25,6 @@ class NoteListViewModel @Inject constructor(
                 if (it is InvokeResponse.Data) {
                     viewModelScope.launchSetState { copy(notes = it.dataOrNull()) }
                 }
-
-//                it.throwIfError()
             }
         }
 

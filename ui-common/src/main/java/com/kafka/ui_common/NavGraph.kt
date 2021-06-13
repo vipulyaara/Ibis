@@ -6,11 +6,13 @@ import androidx.navigation.NavOptionsBuilder
 const val ROUTE_NOTES_LIST = "notes"
 const val ROUTE_CREATE_NOTE = "create_note"
 const val ROUTE_NOTE_DETAIL = "note/{note_id}"
+const val ROUTE_LOGIN = "login"
 
 sealed class Screen(val route: String) {
     object NotesList : Screen(ROUTE_NOTES_LIST)
     class NoteDetail(val noteId: String) : Screen(ROUTE_NOTE_DETAIL)
     object CreateNote : Screen(ROUTE_CREATE_NOTE)
+    object Login : Screen(ROUTE_LOGIN)
 }
 
 fun NavController.navigateTo(screen: Screen, builder: NavOptionsBuilder.() -> Unit = {}) {

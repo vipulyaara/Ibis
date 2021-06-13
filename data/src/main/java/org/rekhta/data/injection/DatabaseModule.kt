@@ -42,4 +42,7 @@ class DatabaseDaoModule {
 
     @Provides
     fun provideNotesDao(db: RekhtaRoomDatabase) = db.notesDao()
+
+    @Provides
+    fun provideUserDao(db: RekhtaRoomDatabase) = db.userDao()
 }

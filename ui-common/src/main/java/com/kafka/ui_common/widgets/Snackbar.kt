@@ -78,6 +78,6 @@ fun Snackbar(
         contentColor = contentColor,
         elevation = elevation
     ) {
-        Text(snackbarData.message)
+        Text(snackbarData?.message.orEmpty())
     }
 }

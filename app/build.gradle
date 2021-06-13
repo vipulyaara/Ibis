@@ -66,14 +66,17 @@ dependencies {
     implementation project(':ui-notes')
     implementation project(':ui-note-detail')
     implementation project(':ui-search')
+    implementation project(':ui-auth')
+
+    implementation platform(Libs.Firebase.bom)
+    implementation Libs.Firebase.crashlytics
+    implementation Libs.Firebase.analytics
+    implementation Libs.Firebase.firestore
 
     implementation Libs.AndroidX.Lifecycle.livedata
     implementation Libs.AndroidX.Lifecycle.viewmodel
 
     implementation Libs.AndroidX.Activity.compose
-
-    implementation platform('com.google.firebase:firebase-bom:26.8.0')
-    implementation 'com.google.firebase:firebase-firestore-ktx'
 
     implementation Libs.Retrofit.serialization
     implementation Libs.Serialization.runtime
@@ -119,9 +122,6 @@ dependencies {
     implementation Libs.AndroidX.Hilt.navigation
     implementation Libs.AndroidX.Hilt.compose
     kapt Libs.AndroidX.Hilt.compiler
-
-    implementation Libs.Google.crashlytics
-    implementation Libs.Google.analytics
 }
 
 android.applicationVariants.all { variant ->

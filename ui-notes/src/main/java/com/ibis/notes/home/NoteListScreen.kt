@@ -41,7 +41,7 @@ fun NoteListScreen(navController: NavController) {
             if (it.isEmpty()) {
                 EmptyNotes()
             } else {
-                NotesColumn(it) { navController.navigateTo(Screen.NoteDetail(it)) }
+                NotesColumn(navController, it) { navController.navigateTo(Screen.NoteDetail(it)) }
             }
         }
     }
@@ -49,8 +49,11 @@ fun NoteListScreen(navController: NavController) {
 
 @ExperimentalAnimationApi
 @Composable
-private fun NotesColumn(list: List<Note>, onNoteClicked: (String) -> Unit) {
+private fun NotesColumn(navController: NavController, list: List<Note>, onNoteClicked: (String) -> Unit) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        LoginWidget(modifier = Modifier.padding(12.dp)) {
+            navController.navigateTo(Screen.Login)
+        }
         list.forEach {
             NoteItem(note = it) { onNoteClicked(it) }
         }
@@ -88,12 +91,12 @@ private fun NoteListTopBar(onProfileClicked: () -> Unit) {
         backgroundColor = MaterialTheme.colors.background,
         elevation = 4.dp,
         actions = {
-            AutoSizedCircularProgressIndicator(
-                modifier = Modifier
-                    .aspectRatio(1f)
-                    .fillMaxHeight()
-                    .padding(16.dp)
-            )
+//            AutoSizedCircularProgressIndicator(
+//                modifier = Modifier
+//                    .aspectRatio(1f)
+//                    .fillMaxHeight()
+//                    .padding(16.dp)
+//            )
 
             IconButton(modifier = Modifier.padding(14.dp), onClick = onProfileClicked) {
                 Icon(

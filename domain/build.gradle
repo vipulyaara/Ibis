@@ -32,14 +32,13 @@ dependencies {
     api project(':base')
     api project(':data')
 
-    implementation Libs.Google.crashlytics
-    implementation Libs.Google.analytics
+    implementation platform(Libs.Firebase.bom)
+    implementation Libs.Firebase.crashlytics
+    implementation Libs.Firebase.analytics
+    implementation Libs.Firebase.firestore
 
     implementation Libs.AndroidX.Fragment.fragment
     implementation Libs.AndroidX.coreKtx
-
-    implementation platform('com.google.firebase:firebase-bom:26.8.0')
-    implementation 'com.google.firebase:firebase-firestore-ktx'
 
     implementation Libs.timber
     implementation Libs.jsoup

@@ -32,8 +32,8 @@ fun EditorScreen(
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
         )
-        TextActions {
-
-        }
+//        TextActions {
+//
+//        }
     }
 }

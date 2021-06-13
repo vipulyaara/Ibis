@@ -29,6 +29,7 @@ dependencies {
 
     implementation Libs.AndroidX.coreKtx
     implementation Libs.AndroidX.Lifecycle.livedata
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.3"
 
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.foundation

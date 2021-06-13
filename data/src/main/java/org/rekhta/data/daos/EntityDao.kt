@@ -5,7 +5,7 @@ import org.rekhta.data.entities.RoomEntity
 
 abstract class EntityDao<in E : RoomEntity> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insert(entity: E): Long
+    abstract fun insert(entity: E): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertAll(vararg entity: E)
